@@ -10,10 +10,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <style>
-        .customCard {
-            height: 20px;
-            width: 30px;
-        }
+
     </style>
 </head>
 
@@ -42,10 +39,10 @@
                             <img src="profile.svg" class="img-circle" alt="profile"> About
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Twitter</a>
-                            <a class="dropdown-item" href="#">Facebook</a>
+                            <a class="dropdown-item" href="https://twitter.com/SantoshGunashe2" target="_blank">Twitter</a>
+                            <a class="dropdown-item" href="https://www.facebook.com/settings?tab=account&section=username" target="_blank">Facebook</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Github</a>
+                            <a class="dropdown-item" href="https://github.com/santoshguna001" target="_blank">Github</a>
                         </div>
                     </li>
                 </ul>
@@ -91,116 +88,12 @@
     <br>
     <div class="row">
         <div class="col-sm-4">
-
-            <div class="container py-2 mt-4 mb-4">
+            <div class="container py-2 mt-4 mb-4" id="timeline_main">
                 <!-- timeline item 1 -->
-                <div class="row">
-                    <!-- timeline item 1 left dot -->
-                    <div class="col-auto text-center flex-column d-none d-sm-flex">
-                        <div class="row h-50">
-                            <div class="col">&nbsp;</div>
-                            <div class="col">&nbsp;</div>
-                        </div>
-                        <h5 class="m-2">
-                            <span class="badge badge-pill bg-light border">&nbsp;</span>
-                        </h5>
-                        <div class="row h-50">
-                            <div class="col border-right">&nbsp;</div>
-                            <div class="col">&nbsp;</div>
-                        </div>
-                    </div>
-                    <!-- timeline item 1 event content -->
-                    <div class="col py-2">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="float-right text-muted">Mon, Jan 9th 2019 7:00 AM</div>
-                                <h4 class="card-title text-muted">Day 1 Orientation</h4>
-                                <p class="card-text">Welcome to the campus, introduction and get started with the tour.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--/row-->
-                <!-- timeline item 2 -->
-                <div class="row">
-                    <div class="col-auto text-center flex-column d-none d-sm-flex">
-                        <div class="row h-50">
-                            <div class="col border-right">&nbsp;</div>
-                            <div class="col">&nbsp;</div>
-                        </div>
-                        <h5 class="m-2">
-                            <span class="badge badge-pill bg-success">&nbsp;</span>
-                        </h5>
-                        <div class="row h-50">
-                            <div class="col border-right">&nbsp;</div>
-                            <div class="col">&nbsp;</div>
-                        </div>
-                    </div>
-                    <div class="col py-2">
-                        <div class="card border-success shadow">
-                            <div class="card-body">
-                                <div class="float-right text-success">Tue, Jan 10th 2019 8:30 AM</div>
-                                <h4 class="card-title text-success">Day 2 Sessions</h4>
-                                <p class="card-text">Sign-up for the lessons and speakers that coincide with your course syllabus. Meet and greet with instructors.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--/row-->
-                <!-- timeline item 3 -->
-                <div class="row">
-                    <div class="col-auto text-center flex-column d-none d-sm-flex">
-                        <div class="row h-50">
-                            <div class="col border-right">&nbsp;</div>
-                            <div class="col">&nbsp;</div>
-                        </div>
-                        <h5 class="m-2">
-                            <span class="badge badge-pill bg-light border">&nbsp;</span>
-                        </h5>
-                        <div class="row h-50">
-                            <div class="col border-right">&nbsp;</div>
-                            <div class="col">&nbsp;</div>
-                        </div>
-                    </div>
-                    <div class="col py-2">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="float-right text-muted">Wed, Jan 11th 2019 8:30 AM</div>
-                                <h4 class="card-title">Day 3 Sessions</h4>
-                                <p>Shoreditcermy Vice.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--/row-->
-                <!-- timeline item 4 -->
-                <div class="row">
-                    <div class="col-auto text-center flex-column d-none d-sm-flex">
-                        <div class="row h-50">
-                            <div class="col border-right">&nbsp;</div>
-                            <div class="col">&nbsp;</div>
-                        </div>
-                        <h5 class="m-2">
-                            <span class="badge badge-pill bg-light border">&nbsp;</span>
-                        </h5>
-                        <div class="row h-50">
-                            <div class="col">&nbsp;</div>
-                            <div class="col">&nbsp;</div>
-                        </div>
-                    </div>
-                    <div class="col py-2">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="float-right text-muted">Thu, Jan 12th 2019 11:30 AM</div>
-                                <h4 class="card-title">Day 4 Wrap-up</h4>
-                                <p>Join us for lunch in Bootsy's cafe across from the Campus Center.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--/row-->
             </div>
             <!--container-->
+
+            <p id="timeline"></p>
         </div>
         <div class="col-sm-8">
             <table class="table table-responsive table-hover table-fixed">
@@ -361,7 +254,34 @@
         }
 
         function setCurrent(current) {
-            console.log('Current Row is:', leftData[current]);
+
+            let lett = leftData[current];
+            document.getElementById("timeline").innerHTML = ' ';
+            try {
+                let lg = lett.length;
+                let text = "";
+                for (x = 0; x < lg; x++) {
+                    try {
+                        text += lett[x].status_detail;
+
+                    } catch (er) {}
+                    try {
+                        let ti = new Date(lett[x].time);
+                        let today = new Date();
+                        let date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+                        let time = today.getHours() + ":" + today.getMinutes();
+                        let dateTime = date + ' ' + time;
+                        text = text + " " + dateTime + '<br>';
+                        add(text);
+                    } catch (er) {}
+
+                }
+                document.getElementById("timeline").innerHTML = text;
+                var pRef = document.getElementById("timeline");
+                pRef.setAttribute('align', "justify");
+            } catch (er) {
+                document.getElementById("timeline").innerHTML = "No information available";
+            }
         }
 
         function getARow(id, z) {
@@ -436,7 +356,6 @@
                             leftData[i] = null;
                         }
                     }
-                    console.log('hey', counters);
                 })
                 .then(function() {
                     document.getElementById("DEL").innerHTML = counters[0];
@@ -450,10 +369,61 @@
                     for (i = 0; i < l; i++) {
                         getARow("table_body", i);
                     }
-                    console.log('Done, baby');
-                    console.log('id:', document.getElementById("row_2").firstChild.firstChild.nodeValue);
                 })
                 .catch(error => console.error('Error:', error));
+        }
+
+        function add(object) {
+            console.log('I was called');
+            let tiRef = document.getElementById('timeline_main');
+            let newRow = document.createElement('div');
+            newRow.setAttribute('class', "row");
+            let newDot = document.createElement('div');
+            newDot.setAttribute('class', "col-auto text-center flex-column d-none d-sm-flex");
+            let newSubDot = document.createElement('div');
+            newSubDot.setAttribute('class', "row h-50");
+            let newSubDot1 = document.createElement('div');
+            newSubDot1.setAttribute('class', "col");
+            newSubDot1.innerHTML = "&nbsp";
+            let newSubDot2 = document.createElement('div');
+            newSubDot2.setAttribute('class', "col");
+            newSubDot2.innerHTML = "&nbsp";
+            newSubDot.appendChild(newSubDot1);
+            newSubDot.appendChild(newSubDot2);
+            let newHead = document.createElement('h5');
+            newHead.setAttribute('class', 'm-2');
+            let newSpan = document.createElement('span');
+            newSpan.setAttribute('class', 'badge badge-pill bg-light border');
+            newSpan.innerHTML = "&nbsp"
+            newHead.appendChild(newSpan);
+            let newSubdot = document.createElement('div');
+            newSubdot.setAttribute('class', "row h-50");
+            let newSubdot1 = document.createElement('div');
+            newSubdot1.setAttribute('class', "col broder-right");
+            newSubdot1.innerHTML = "&nbsp";
+            let newSubdot2 = document.createElement('div');
+            newSubdot2.setAttribute('class', "col");
+            newSubdot2.innerHTML = "&nbsp";
+            newSubdot.appendChild(newSubdot1);
+            newSubdot.appendChild(newSubdot2);
+            newDot.appendChild(newSubDot);
+            newDot.appendChild(newHead);
+            newDot.appendChild(newSubdot);
+            let newdot = document.createElement('div');
+            newdot.setAttribute('class', "col py-2");
+            let newdot1 = document.createElement('div');
+            newdot1.setAttribute('class', "card");
+            let newdot2 = document.createElement('div');
+            newdot2.setAttribute('class', "card-body");
+            let newdot3 = document.createElement('div');
+            newdot3.setAttribute('class', "float-right text-muted");
+            newdot3.innerHTML = object;
+            let newhead = document.createElement('h4');
+            newhead.setAttribute('class', "card-title text-muted");
+            newdot2.appendChild(newdot3);
+            newdot2.appendChild(newhead);
+            newdot1.appendChild(newdot2);
+            newdot.appendChild(newdot1);
         }
     </script>
 </body>
