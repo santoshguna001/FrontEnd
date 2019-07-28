@@ -1,0 +1,180 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Test page</title>
+</head>
+
+<body>
+    <button onClick="getData()">Click me</button>
+    <p id='data'></p>
+    <script>
+        var counters = Array.from(Array(5), () => 0)
+
+        function getRightData(datas) {
+            var awbno, carrier, carrier1, from, to, etd1, etd, date, status;
+            try {
+                awbno = datas.awbno;
+
+            } catch (error) {
+                awbno = "NA";
+            }
+            try {
+                carrier = datas.carrier;
+            } catch (error) {
+                carrier = "NA";
+            }
+            try {
+                from = datas.from;
+
+            } catch (error) {
+                from = "NA";
+            }
+            try {
+                to = datas.to;
+
+            } catch (error) {
+                to = "NA";
+            }
+            try {
+                etd1 = datas.extra_fields;
+                try {
+                    etd = etd1.expected_delivery_date;
+                    d1 = new Date(etd);
+                    if (d1 == null) {
+                        etd = "NA";
+                    } else {
+                        var month = d1.getUTCMonth() + 1;
+                        var day = d1.getUTCDate();
+                        var year = d1.getUTCFullYear();
+
+                        etd = day + "/" + month + "/" + year;
+                    }
+                } catch (error) {
+                    etd = "NA";
+                }
+            } catch (error) {
+                etd1 = "NA";
+                etd = "NA";
+            }
+            try {
+                date = datas.time;
+                d1 = new Date(date);
+                if (d1 == null) {
+                    date = "NA";
+                } else {
+                    var month = d1.getUTCMonth() + 1;
+                    var day = d1.getUTCDate();
+                    var year = d1.getUTCFullYear();
+
+                    date = day + "/" + month + "/" + year;
+                }
+            } catch (error) {
+                date = "NA";
+            }
+            try {
+                status = datas.current_status;
+
+            } catch (error) {
+                status = "NA";
+            }
+            try {
+                if (datas.current_status_code == "OOD") {
+                    counters[0]++;
+                } else if (datas.current_status_code == "INT") {
+                    counters[1]++;
+                } else if (datas.current_status_code == "DEL") {
+                    counters[2]++;
+                } else if (datas.current_status_code == "DEX") {
+                    counters[3]++;
+                } else {
+                    counters[4]++;
+                }
+            } catch (error) {
+
+            }
+            carrier1 = carrier;
+            return {
+                awbno,
+                carrier,
+                from,
+                to,
+                carrier1,
+                date,
+                etd,
+                status
+            };
+        }
+
+        function getTimeLine(temp) {
+            var time = "NA",
+                location = "NA",
+                status_detail = "NA";
+            try {
+                time = new Date(temp.time);
+            } catch (error) {}
+            try {
+                location = temp.location;
+            } catch (error) {}
+            try {
+                status_detail = temp.status_detail;
+            } catch (error) {}
+            return {
+                time,
+                location,
+                status_detail
+            };
+        }
+
+        function getLeftData(scan) {
+            var obj = [];
+            var len;
+            try {
+                len = data.length;
+                for (i = 0; i < len; i++) {
+                    obj[i] = getTimeLine(scan[i]);
+                    console.log('Done', obj[i]);
+                    break;
+                }
+                return obj;
+            } catch (er) {
+                return null;
+            }
+        }
+
+        function getData() {
+            var str = "";
+            var event;
+            var rightData = [];
+            var leftData = [];
+            var url = 'https://93870v1pgk.execute-api.ap-south-1.amazonaws.com/latest/shipments/mayank';
+            var data = {
+                email: "santoshgunashekar@gmail.com",
+                name: "Santosh G"
+            };
+            var obj = [];
+            fetch(url, {
+                    method: 'POST', // or 'PUT'
+                    body: JSON.stringify(data), // data can be `string` or {object}!
+                    headers: {
+                        'Authorization': 'Bearer tTU3gFVUdP',
+                        'Content-Type': 'application/json'
+                    }
+                }).then(res => res.json())
+                .then(data => str = data)
+                .then(function() {
+                    event = str.data;
+                    //console.log('Success', JSON.stringify(str));
+                    var l = event.length;
+                    for (i = 0; i < l; i++) {
+                        rightData[i] = getRightData(event[i]);
+                        leftData[i] = getLeftData(event[i].scan, i);
+                    }
+                    //console.log('Timeline:', leftData[34]);
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+
+</html>
