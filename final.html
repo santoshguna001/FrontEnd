@@ -88,12 +88,11 @@
     <br>
     <div class="row">
         <div class="col-sm-4">
-            <div class="container py-2 mt-4 mb-4" id="timeline_main">
-                <!-- timeline item 1 -->
-            </div>
-            <!--container-->
-
-            <p id="timeline"></p>
+            <h3 id="current_number">
+            </h3>
+            <p id="timeline">
+                </i>
+            </p>
         </div>
         <div class="col-sm-8">
             <table class="table table-responsive table-hover table-fixed">
@@ -114,11 +113,6 @@
             </table>
         </div>
     </div>
-
-
-
-    <button onClick="getData() ">Click me</button>
-    <p id='data'></p>
     <script>
         var str = " ";
         var event;
@@ -276,7 +270,9 @@
                     } catch (er) {}
 
                 }
+                document.getElementById('current_number').innerHTML = "AWS NO: " + rightData[current].awbno;
                 document.getElementById("timeline").innerHTML = text;
+                document.getElementById("timeline").setAttribute('align', "justify");
                 var pRef = document.getElementById("timeline");
                 pRef.setAttribute('align', "justify");
             } catch (er) {
@@ -369,6 +365,9 @@
                     for (i = 0; i < l; i++) {
                         getARow("table_body", i);
                     }
+                }).then(function() {
+                    setCurrent(0);
+                    document.getElementById('current_number').innerHTML = "AWS NO: " + rightData[0].awbno;
                 })
                 .catch(error => console.error('Error:', error));
         }
@@ -425,6 +424,7 @@
             newdot1.appendChild(newdot2);
             newdot.appendChild(newdot1);
         }
+        getData();
     </script>
 </body>
 
