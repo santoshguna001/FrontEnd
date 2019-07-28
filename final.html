@@ -107,9 +107,9 @@
         }
 
         function getTimeLine(temp) {
-            var time = "NA",
-                location = "NA",
-                status_detail = "NA";
+            var time,
+                location,
+                status_detail;
             try {
                 time = new Date(temp.time);
             } catch (error) {}
@@ -127,13 +127,24 @@
         }
 
         function getLeftData(scan) {
+            var len = 0;
+            var result = [];
+            var obj = {};
+            len = scan.length;
+            for (j = 0; j < len; j++) {
+                obj = getTimeLine(scan[j]);
+                result[j] = obj;
+            }
+            return result;
+        }
+
+        function fn(data) {
             var obj = [];
             var len;
             try {
                 len = data.length;
                 for (i = 0; i < len; i++) {
                     obj[i] = getTimeLine(scan[i]);
-                    console.log('Done', obj[i]);
                     break;
                 }
                 return obj;
@@ -164,13 +175,17 @@
                 .then(data => str = data)
                 .then(function() {
                     event = str.data;
-                    //console.log('Success', JSON.stringify(str));
                     var l = event.length;
                     for (i = 0; i < l; i++) {
+                        //console.log('Success', JSON.stringify(str.data[i].scan));
                         rightData[i] = getRightData(event[i]);
-                        leftData[i] = getLeftData(event[i].scan, i);
+                        try {
+                            var t = event[i].scan;
+                            leftData[i] = getLeftData(t);
+                        } catch (er) {
+                            leftData[i] = null;
+                        }
                     }
-                    //console.log('Timeline:', leftData[34]);
                 })
                 .catch(error => console.error('Error:', error));
         }
