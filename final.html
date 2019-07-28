@@ -9,74 +9,145 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <style>
+        .customCard {
+            height: 20px;
+            width: 30px;
+        }
+    </style>
 </head>
 
-<body>
-    <div class="jumbotron text-center">
-        <div class="row">
-            <div class="col-md-4">
+<body style="background-color: rgb(239, 240, 241)">
+    <div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#"><img src="logo.svg" alt="Company logo">Intugine</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
 
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Brands</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Transporters</a>
+                    </li>
+                    <li class="nav-item dropdown">
+
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="profile.svg" class="img-circle" alt="profile"> About
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Twitter</a>
+                            <a class="dropdown-item" href="#">Facebook</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Github</a>
+                        </div>
+                    </li>
+                </ul>
             </div>
-            <div class="col-md-8">
-                <nav class="navbar navbar-expand-sm bg-light float-right">
-                    <ul class="navbar-nav">
-                        <li class="nav-item" style="margin-right: 40px">
-                            <a class="nav-link" href="#">Link 1</a>
-                        </li>
-                        <li class="nav-item" style="margin-right: 40px">
-                            <a class="nav-link" href="#">Link 2</a>
-                        </li>
-                        <li class="nav-item" style="margin-right: 40px">
-                            <a class="nav-link" href="#">Link 3</a>
-                        </li>
-                        <li class="nav-item" style="margin-right: 40px">
-                            <div class="dropdown">
-                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                                                  Dropdown button
-                                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Link 1</a>
-                                    <a class="dropdown-item" href="#">Link 2</a>
-                                    <a class="dropdown-item" href="#">Link 3</a>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </nav>
+
+        </nav>
+    </div>
+    <div class="container">
+        <div class="card-group row" style="margin-top: 20px;">
+            <div class="card col" style="margin-right: 10px;background-color: #0050FF;" id="card_1">
+                <div class="card-block">
+                    <h4 class="card-title" style="color: white;">DEL</h4>
+                    <p class="card-text" id="DEL" style="color: white;"></p>
+                </div>
+            </div>
+            <div class="card col" style="margin-right: 10px;background-color: rgb(195, 215, 255);">
+                <div class="card-block">
+                    <h4 class="card-title" style="color: #0050FF">INT</h4>
+                    <p class="card-text" style="color:#0050FF;" id="INT"></p>
+                </div>
+            </div>
+            <div class="card col" style="margin-right: 10px;background-color: rgb(195, 215, 255);">
+                <div class="card-block">
+                    <h4 class="card-title" style="color: #0050FF;">OOD</h4>
+                    <p class="card-text" style="color: #0050FF;" id="OOD"></p>
+                </div>
+            </div>
+            <div class="card col" style="margin-right: 10px;background-color: rgb(195, 215, 255);">
+                <div class="card-block">
+                    <h4 class="card-title" style="color: #0050FF">DEX</h4>
+                    <p class="card-text" style="color: #0050FF" id="DEX"></p>
+                </div>
+            </div>
+            <div class="card col" style="margin-right: 10px;background-color: rgb(195, 215, 255);">
+                <div class="card-block">
+                    <h4 class="card-title" style="color: #0050FF;">NFI</h4>
+                    <p class="card-text" style="color:#0050FF;" id="NFI"></p>
+                </div>
             </div>
         </div>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-sm-4">
 
+        </div>
+        <div class="col-sm-8">
+            <table class="table table-responsive table-hover table-fixed">
+                <thead>
+                    <tr>
+                        <th>AWB Number</th>
+                        <th>Transporter</th>
+                        <th>Source</th>
+                        <th>Destination</th>
+                        <th>Brand</th>
+                        <th>Start Date</th>
+                        <th>ETD</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="table_body">
+                </tbody>
+            </table>
+        </div>
     </div>
 
-    <button onClick="getData()">Click me</button>
+
+
+    <button onClick="getData() ">Click me</button>
     <p id='data'></p>
     <script>
+        var str = " ";
+        var event;
+        var rightData = [];
+        var leftData = [];
         var counters = Array.from(Array(5), () => 0)
 
         function getRightData(datas) {
             var awbno, carrier, carrier1, from, to, etd1, etd, date, status;
             try {
-                awbno = datas.awbno;
+                awbno = "#" + datas.awbno;
 
             } catch (error) {
-                awbno = "NA";
+                awbno = "NA ";
             }
             try {
                 carrier = datas.carrier;
             } catch (error) {
-                carrier = "NA";
+                carrier = "NA ";
             }
             try {
                 from = datas.from;
 
             } catch (error) {
-                from = "NA";
+                from = "NA ";
             }
             try {
                 to = datas.to;
 
             } catch (error) {
-                to = "NA";
+                to = "NA ";
             }
             try {
                 etd1 = datas.extra_fields;
@@ -84,41 +155,41 @@
                     etd = etd1.expected_delivery_date;
                     d1 = new Date(etd);
                     if (d1 == null) {
-                        etd = "NA";
+                        etd = "NA ";
                     } else {
                         var month = d1.getUTCMonth() + 1;
                         var day = d1.getUTCDate();
                         var year = d1.getUTCFullYear();
 
-                        etd = day + "/" + month + "/" + year;
+                        etd = day + "/ " + month + "/ " + year;
                     }
                 } catch (error) {
-                    etd = "NA";
+                    etd = "NA ";
                 }
             } catch (error) {
-                etd1 = "NA";
-                etd = "NA";
+                etd1 = "NA ";
+                etd = "NA ";
             }
             try {
                 date = datas.time;
                 d1 = new Date(date);
                 if (d1 == null) {
-                    date = "NA";
+                    date = "NA ";
                 } else {
                     var month = d1.getUTCMonth() + 1;
                     var day = d1.getUTCDate();
                     var year = d1.getUTCFullYear();
 
-                    date = day + "/" + month + "/" + year;
+                    date = day + "/ " + month + "/ " + year;
                 }
             } catch (error) {
-                date = "NA";
+                date = "NA ";
             }
             try {
                 status = datas.current_status;
 
             } catch (error) {
-                status = "NA";
+                status = "NA ";
             }
             try {
                 if (datas.current_status_code == "OOD") {
@@ -180,30 +251,40 @@
             return result;
         }
 
-        function fn(data) {
-            var obj = [];
-            var len;
-            try {
-                len = data.length;
-                for (i = 0; i < len; i++) {
-                    obj[i] = getTimeLine(scan[i]);
-                    break;
-                }
-                return obj;
-            } catch (er) {
-                return null;
-            }
+        function getARow(id, z) {
+            let tableRef = document.getElementById(id);
+            let newRow = tableRef.insertRow(-1);
+            let newCell = newRow.insertCell(0);
+            let awbno = document.createTextNode(rightData[z].awbno);
+            newCell.appendChild(awbno);
+            newCell = newRow.insertCell(1);
+            let transporter = document.createTextNode(rightData[z].carrier);
+            newCell.appendChild(transporter);
+            newCell = newRow.insertCell(2);
+            let source = document.createTextNode(rightData[z].from);
+            newCell.appendChild(source);
+            newCell = newRow.insertCell(3);
+            let destination = document.createTextNode(rightData[z].to);
+            newCell.appendChild(destination);
+            newCell = newRow.insertCell(4);
+            let brand = document.createTextNode(rightData[z].carrier1);
+            newCell.appendChild(brand);
+            newCell = newRow.insertCell(5);
+            let date = document.createTextNode(rightData[z].date);
+            newCell.appendChild(date);
+            newCell = newRow.insertCell(6);
+            let etd = document.createTextNode(rightData[z].etd);
+            newCell.appendChild(etd);
+            newCell = newRow.insertCell(7);
+            let status = document.createTextNode(rightData[z].status);
+            newCell.appendChild(status);
         }
 
         function getData() {
-            var str = "";
-            var event;
-            var rightData = [];
-            var leftData = [];
             var url = 'https://93870v1pgk.execute-api.ap-south-1.amazonaws.com/latest/shipments/mayank';
             var data = {
-                email: "santoshgunashekar@gmail.com",
-                name: "Santosh G"
+                email: "santoshgunashekar@gmail.com ",
+                name: "Santosh G "
             };
             var obj = [];
             fetch(url, {
@@ -228,6 +309,21 @@
                             leftData[i] = null;
                         }
                     }
+                    console.log('hey', counters);
+                })
+                .then(function() {
+                    document.getElementById("DEL").innerHTML = counters[0];
+                    document.getElementById("INT").innerHTML = counters[1];
+                    document.getElementById("OOD").innerHTML = counters[2];
+                    document.getElementById("DEX").innerHTML = counters[3];
+                    document.getElementById("NFI").innerHTML = counters[4];
+                })
+                .then(function() {
+                    let l = event.length;
+                    for (i = 0; i < l; i++) {
+                        getARow("table_body", i);
+                    }
+                    console.log('Done, baby');
                 })
                 .catch(error => console.error('Error:', error));
         }
